@@ -1,0 +1,97 @@
+" ----------------------------------------------------
+"  Startup Settings
+" ----------------------------------------------------
+set nocompatible
+filetype off
+
+" ----------------------------------------------------
+"  Vundle Start
+" ----------------------------------------------------
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#rc()
+
+" Let Vundle Manage Vundle (WFT Mate?!?)
+Plugin 'VundleVim/Vundle.vim'
+
+" Other Repos
+" Plugin 'liuchengxu/space-vim-dark'
+Plugin 'dikiaap/minimalist'
+Plugin 'danilo-augusto/vim-afterglow'
+Plugin 'joshdick/onedark.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'bling/vim-bufferline'
+Plugin 'scrooloose/nerdtree'
+" Plugin 'chriskempson/base16-vim'
+
+" ----------------------------------------------------
+"  Vundle Done
+" ----------------------------------------------------
+call vundle#end()                                     " Required
+filetype plugin indent on                             " Required
+
+" Line Numbers
+set number
+
+" Backspace Settings
+set backspace=indent,eol,start
+
+" Indentation
+set autoindent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+
+" Wildmenu Setting
+set wildmenu
+
+" Set Fonts
+set encoding=utf-8
+
+" Set Buffers to Hidden
+set hidden
+
+" Set Vertial Column at 80
+set colorcolumn=80
+
+" Setup Color Scheme
+set t_Co=256
+" set background=dark
+" let g:onedark_termcolors=256
+" let base16colorspace=256
+
+" -----------------------------------------------------------------------------
+"  Setup VIM-AIRLINE
+" -----------------------------------------------------------------------------
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" Using Patched Fonts
+let g:airline_powerline_fonts=1
+
+" Using Unpatched Fonts
+" Make Seperators Square
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
+
+" Symbol Next to the Line Percentage
+" let g:airline_symbols.linenr = ''
+
+" Symbol Next to the Line Ratio
+" let g:airline_symbols.maxlinenr = 'Ξ'
+
+" Don't Know What these Are ...
+" let g:airline_symbols.crypt = '🔒'
+" let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.spell = 'Ꞩ'
+" let g:airline_symbols.notexists = '∄'
+" let g:airline_symbols.whitespace = 'Ξ'
+" -----------------------------------------------------------------------------
+
+" Start Syntax Highlighting
+syntax on
+colorscheme onedark
+
