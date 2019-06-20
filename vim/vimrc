@@ -15,6 +15,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Other Repos
 " Plugin 'liuchengxu/space-vim-dark'
+Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'dikiaap/minimalist'
 Plugin 'danilo-augusto/vim-afterglow'
 Plugin 'joshdick/onedark.vim'
@@ -28,59 +29,100 @@ Plugin 'scrooloose/nerdtree'
 "  Vundle Done
 " ----------------------------------------------------
 call vundle#end()                                     " Required
-filetype plugin indent on                             " Required
+
+" ----------------------------------------------------
+"  General Settings
+" ----------------------------------------------------
+" Syntax Highlighting Settings
+syntax enable                                         " Enable Syntax
+filetype on                                           " Enable File-Type-Specific Configuration
+filetype plugin on                                    " File-Type (e.g.. .c, .html, .py) Plugin
+filetype indent on                                    " Indent Rules by File-Type
+syn sync fromstart                                    " Apply Syntax Rules from Start of File
+" set foldmethod=syntax                                 " Enable Syntax Folding
 
 " Line Numbers
 set number
 
-" Backspace Settings
+"  Backspace Settings
 set backspace=indent,eol,start
 
-" Indentation
-set autoindent
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-
-" Wildmenu Setting
-set wildmenu
-
-" Set Fonts
-set encoding=utf-8
-
-" Set Buffers to Hidden
+" Allow Hidden Buffer Changes
 set hidden
+
+" VIM Operational Settings
+set history=1000            " increase memory of commands and search history
+set undolevels=1000         " increase the level of undo's
+set autoindent              " use indentation of previous line
+set smartindent             " use smart indentation for C
+set pastetoggle=<F2>        " disable indentation rules in paste mode, i.e. F2
+set shiftwidth=4            " number of visual spaces for SHIFT
+set tabstop=4               " number of visual spaces per TAB
+set softtabstop=4           " number of spaces in tab when editing
+set expandtab               " insert spaces for tabs
+set textwidth=80            " wrap lines
+set showcmd                 " show command in bottom bar
+set cursorline              " highlight current line
+set lazyredraw              " redraw only when we need to
+set showmatch               " highlight matching parenthesis [{()}]
+set ignorecase              " make searches case-insensitive
+set smartcase               " make searches case-sensitive only if a capital letter is typed
+set incsearch               " search as characters are entered
+set hlsearch                " highlight matches
+set wildmenu                " visual autocomplete for command menu
+set wildmode=list:longest   " shell-like completion (complete till unambiguous)
+set ruler                   " show ruler
+set scrolloff=5             " show a few lines around the current position
+
+" Setup Backup Directory
+" set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " Set Vertial Column at 80
 set colorcolumn=80
 
-" Setup Color Scheme
+" -----------------------------------------------------------------------------
+"  Whitespace Configuration
+" -----------------------------------------------------------------------------
+" Set Whitespace
+" set listchars=space:?,tab:>
+set listchars=space:·,tab:→\ 
+set list
+
+" Set LISTCHARS Highlight Color
+hi SpecialKey ctermfg=DarkGrey
+
+" Fix for Highllighted Line
+autocmd BufNewFile,BufRead * call matchadd('SpecialKey', '\s\+')
+
+" Setup Colors
 set t_Co=256
-" set background=dark
-" let g:onedark_termcolors=256
-" let base16colorspace=256
+
+" Setup Text Encoding
+set encoding=utf-8
 
 " -----------------------------------------------------------------------------
-"  Setup VIM-AIRLINE
+"  No Special Handling Needed with Hack Font
 " -----------------------------------------------------------------------------
+" Setup VIM-AIRLINE
+let g:airline_powerline_fonts=1
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-" Using Patched Fonts
-let g:airline_powerline_fonts=1
-
-" Using Unpatched Fonts
 " Make Seperators Square
 " let g:airline_left_sep = ''
 " let g:airline_right_sep = ''
 
 " Symbol Next to the Line Percentage
-" let g:airline_symbols.linenr = ''
+let g:airline_symbols.linenr = 'Ξ'
 
 " Symbol Next to the Line Ratio
-" let g:airline_symbols.maxlinenr = 'Ξ'
+" let g:airline_symbols.maxlinenr = ''
+
+" Symbol in Front of Whitespace Checking
+let g:airline_symbols.whitespace = 'Ξ'
 
 " Don't Know What these Are ...
 " let g:airline_symbols.crypt = '🔒'
@@ -88,10 +130,13 @@ let g:airline_powerline_fonts=1
 " let g:airline_symbols.paste = 'ρ'
 " let g:airline_symbols.spell = 'Ꞩ'
 " let g:airline_symbols.notexists = '∄'
-" let g:airline_symbols.whitespace = 'Ξ'
+
+" Symbol Next the the Whitespace Detector
+" let g:airline_symbols.whitespace = '-'
+
 " -----------------------------------------------------------------------------
 
-" Start Syntax Highlighting
-syntax on
-colorscheme onedark
+" Set Colors
+colorscheme PaperColor
+set background=dark
 
