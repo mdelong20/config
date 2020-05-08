@@ -1,49 +1,57 @@
-" ----------------------------------------------------
+" -----------------------------------------------------------------------------
 "  Startup Settings
-" ----------------------------------------------------
+" -----------------------------------------------------------------------------
 set nocompatible
 filetype off
 
-" ----------------------------------------------------
+" -----------------------------------------------------------------------------
 "  Vundle Start
-" ----------------------------------------------------
+" -----------------------------------------------------------------------------
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " Let Vundle Manage Vundle (WFT Mate?!?)
 Plugin 'VundleVim/Vundle.vim'
 
-" Other Repos
-" Plugin 'liuchengxu/space-vim-dark'
+" Set Lightline vs Airline
+let AIRLINE = 1
+
+" Extensions ..
+
+" Themes
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'dikiaap/minimalist'
 Plugin 'danilo-augusto/vim-afterglow'
-Plugin 'joshdick/onedark.vim'
-Plugin 'vim-airline/vim-airline'
-" Plugin 'itchyny/lightline.vim'
-" Plugin 'mengelbrecht/lightline-bufferline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'bling/vim-bufferline'
-Plugin 'scrooloose/nerdtree'
 Plugin 'morhetz/gruvbox'
-" Plugin 'valloric/youcompleteme'
-" Plugin 'chriskempson/base16-vim'
+Plugin 'joshdick/onedark.vim'
 
-" ----------------------------------------------------
+" Functional
+if AIRLINE
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'bling/vim-bufferline'
+else
+    Plugin 'itchyny/lightline.vim'
+    Plugin 'mengelbrecht/lightline-bufferline'
+endif
+Plugin 'scrooloose/nerdtree'
+Plugin 'airblade/vim-gitgutter'
+
+" -----------------------------------------------------------------------------
 "  Vundle Done
-" ----------------------------------------------------
-call vundle#end()                                     " Required
+" -----------------------------------------------------------------------------
+call vundle#end()                                                              " Required
 
-" ----------------------------------------------------
+" -----------------------------------------------------------------------------
 "  General Settings
-" ----------------------------------------------------
+" -----------------------------------------------------------------------------
 " Syntax Highlighting Settings
-syntax enable                                         " Enable Syntax
-filetype on                                           " Enable File-Type-Specific Configuration
-filetype plugin on                                    " File-Type (e.g.. .c, .html, .py) Plugin
-filetype indent on                                    " Indent Rules by File-Type
-syn sync fromstart                                    " Apply Syntax Rules from Start of File
-" set foldmethod=syntax                                 " Enable Syntax Folding
+syntax enable                                                                  " Enable Syntax
+filetype on                                                                    " Enable File-Type-Specific Configuration
+filetype plugin on                                                             " File-Type (e.g.. .c, .html, .py) Plugin
+filetype indent on                                                             " Indent Rules by File-Type
+syn sync fromstart                                                             " Apply Syntax Rules from Start of File
+" set foldmethod=syntax                                                        " Enable Syntax Folding
 
 " Line Numbers
 set number
@@ -86,8 +94,10 @@ set colorcolumn=80
 " -----------------------------------------------------------------------------
 " Set Whitespace
 " set listchars=space:?,tab:>
-set listchars=space:·,tab:→\ 
-set list
+if v:version > 800
+    set listchars=space:·,tab:→\ 
+    set list
+endif
 
 " Set LISTCHARS Highlight Color
 hi SpecialKey ctermfg=DarkGrey
@@ -105,17 +115,17 @@ set encoding=utf-8
 "  Airline Settings
 " -----------------------------------------------------------------------------
 " Setup VIM-AIRLINE
-" let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=1
 
-" if !exists('g:airline_symbols')
-"     let g:airline_symbols = {}
-" endif
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 
 " Symbol Next to the Line Percentage
-" let g:airline_symbols.linenr = 'Ξ'
+let g:airline_symbols.linenr = 'Ξ'
 
 " Symbol in Front of Whitespace Checking
-" let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " -----------------------------------------------------------------------------
 "  Ligthline Settings
