@@ -24,6 +24,7 @@ Plugin 'dikiaap/minimalist'
 Plugin 'danilo-augusto/vim-afterglow'
 Plugin 'morhetz/gruvbox'
 Plugin 'joshdick/onedark.vim'
+Plugin 'yorickpeterse/happy_hacking.vim'
 
 " Functional
 if AIRLINE
@@ -87,7 +88,7 @@ set ruler                   " show ruler
 set scrolloff=5             " show a few lines around the current position
 
 " Set Vertial Column at 80
-set colorcolumn=80
+set colorcolumn=81
 
 " -----------------------------------------------------------------------------
 "  Whitespace Configuration
@@ -135,6 +136,11 @@ set laststatus=2
 " -----------------------------------------------------------------------------
 "  Setup Default VIM Colors
 " -----------------------------------------------------------------------------
-colorscheme gruvbox
-set background=dark
+colorscheme PaperColor
+set background=light
 
+" -----------------------------------------------------------------------------
+"  For TMUX
+" -----------------------------------------------------------------------------
+set ttymouse=xterm2
+set mouse=a
