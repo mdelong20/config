@@ -9,7 +9,7 @@ alias tmux='/usr/bin/tmux -2'
 #  Functions
 # -----------------------------------------------------------------------------
 ## COMPRESSION FUNCTION ##
-compress() {
+c() {
     FILE=$1
     shift
     case $FILE in
