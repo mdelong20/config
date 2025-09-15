@@ -6,7 +6,7 @@
 sudo apt install -y vim tmux git build-essential
 
 # Install Chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/google.gpg >/dev/null
 sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 sudo apt-get update
 sudo apt-get install google-chrome-stable
@@ -18,12 +18,12 @@ sudo install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microso
 rm -f microsoft.gpg
 
 VSCODE_LIST="/etc/apt/sources.list.d/vscode.sources"
-echo "Types: deb" > ${VSCODE_LIST}
-echo "URIs: https://packages.microsoft.com/repos/code" >> ${VSCODE_LIST}
-echo "Suites: stable" >> ${VSCODE_LIST}
-echo "Components: main" >> ${VSCODE_LIST}
-echo "Architectures: amd64,arm64,armhf" >> ${VSCODE_LIST}
-echo "Signed-By: /usr/share/keyrings/microsoft.gpg" >> ${VSCODE_LIST}
+sudo sh -c "echo \"Types: deb\" > ${VSCODE_LIST}"
+sudo sh -c "echo \"URIs: https://packages.microsoft.com/repos/code\" >> ${VSCODE_LIST}"
+sudo sh -c "echo \"Suites: stable\" >> ${VSCODE_LIST}"
+sudo sh -c "echo \"Components: main\" >> ${VSCODE_LIST}"
+sudo sh -c "echo \"Architectures: amd64,arm64,armhf\" >> ${VSCODE_LIST}"
+sudo sh -c "echo \"Signed-By: /usr/share/keyrings/microsoft.gpg\" >> ${VSCODE_LIST}"
 
 sudo apt install apt-transport-https
 sudo apt update
