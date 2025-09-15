@@ -5,6 +5,30 @@
 # ------------------------------------------------------------------------------
 sudo apt install -y vim tmux git build-essential
 
+# Install Chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt-get update
+sudo apt-get install google-chrome-stable
+
+# Install VSCODE
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
+rm -f microsoft.gpg
+
+VSCODE_LIST="/etc/apt/sources.list.d/vscode.sources"
+echo "Types: deb" > ${VSCODE_LIST}
+echo "URIs: https://packages.microsoft.com/repos/code" >> ${VSCODE_LIST}
+echo "Suites: stable" >> ${VSCODE_LIST}
+echo "Components: main" >> ${VSCODE_LIST}
+echo "Architectures: amd64,arm64,armhf" >> ${VSCODE_LIST}
+echo "Signed-By: /usr/share/keyrings/microsoft.gpg" >> ${VSCODE_LIST}
+
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code # or code-insiders
+
 # Stage Configuration Files
 cp ./.tmux.conf ~/.tmux.conf
 cp ./.vimrc ~/.vimrc
