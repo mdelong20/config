@@ -37,6 +37,8 @@ else
 endif
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
 
 " -----------------------------------------------------------------------------
 "  Vundle Done
@@ -88,7 +90,7 @@ set ruler                   " show ruler
 set scrolloff=5             " show a few lines around the current position
 
 " Set Vertial Column at 80
-set colorcolumn=81
+set colorcolumn=80
 
 " -----------------------------------------------------------------------------
 "  Whitespace Configuration
@@ -123,10 +125,20 @@ if !exists('g:airline_symbols')
 endif
 
 " Symbol Next to the Line Percentage
-let g:airline_symbols.linenr = 'Ξ'
+let g:airline_symbols.linenr = '|'
 
 " Symbol in Front of Whitespace Checking
-let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_symbols.whitespace = ' '
+
+" Setup Statusline
+let g:airline_section_a = airline#section#create(['mode'])
+let g:airline_section_z = '%3p%% %l:%c'
+
+" -----------------------------------------------------------------------------
+"  Control-P Settings
+" -----------------------------------------------------------------------------
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " -----------------------------------------------------------------------------
 "  Ligthline Settings
@@ -136,8 +148,8 @@ set laststatus=2
 " -----------------------------------------------------------------------------
 "  Setup Default VIM Colors
 " -----------------------------------------------------------------------------
-colorscheme PaperColor
-set background=light
+colorscheme onedark
+set background=dark
 
 " -----------------------------------------------------------------------------
 "  For TMUX
