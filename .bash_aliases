@@ -43,3 +43,9 @@ x() {
             echo "'$1' is not a valid file"
     fi
 }
+
+## FUNCTION TO FIX THE SSH SOCKET ##
+fixssh () {
+    eval `tmux show-env | sed -n 's/^\(SSH_[^=]*\)=\(.*\)/export \1="\2"/p'`
+}
+
